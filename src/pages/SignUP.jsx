@@ -25,9 +25,8 @@ const SignUp = () => {
       email: email.current.value,
       password: password.current.value,
     });
-    console.log(response.data);
-    toast.success("Account Created Sucessfully!!!");
     navigate("/login");
+    toast.success(`${response.data.message}!!!`);
   };
 
   return (
@@ -52,7 +51,7 @@ const SignUp = () => {
                     </label>
                     <input
                       ref={firstName}
-                      className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                      className="w-full px-3 py-2 text-sm leading-tight text-gray-100 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       id="firstName"
                       type="text"
                       placeholder="First Name"
@@ -64,7 +63,7 @@ const SignUp = () => {
                     </label>
                     <input
                       ref={lastName}
-                      className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                      className="w-full px-3 py-2 text-sm leading-tight text-gray-100 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       id="lastName"
                       type="text"
                       placeholder="Last Name"
@@ -77,7 +76,7 @@ const SignUp = () => {
                   </label>
                   <input
                     ref={email}
-                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-100 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     id="email"
                     type="email"
                     placeholder="Email"
@@ -90,7 +89,7 @@ const SignUp = () => {
                     </label>
                     <input
                       ref={password}
-                      className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                      className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-100 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       id="password"
                       type="password"
                       placeholder="******************"
@@ -103,7 +102,7 @@ const SignUp = () => {
                     </label>
                     <input
                       ref={confirmPassword}
-                      className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                      className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-100 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                       id="c_password"
                       type="password"
                       placeholder="******************"

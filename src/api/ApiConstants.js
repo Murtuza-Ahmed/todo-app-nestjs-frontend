@@ -10,7 +10,7 @@ export const ApiConstants = {
       return "/todo/completed/" + userId;
     },
     MARK_COMPLETE: (todoId) => {
-      return "/todo/update" + todoId;
+      return "/todo/update/" + todoId;
     },
     DELETE: (todoId) => {
       return "/todo/delete/" + todoId;

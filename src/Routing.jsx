@@ -2,12 +2,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Login from "./src/pages/Login";
-import SignUp from "./src/pages/SignUP";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUP";
 import ProtectedRoute from "./ProtectedRoute";
-import ActiveTodos from "./src/pages/ActiveTodos";
-import CompeletedTodos from "./src/pages/CompleteTodos";
-import UsersPage from "./src/pages/UserPage";
+import ActiveTodos from "./pages/ActiveTodos";
+import CompeletedTodos from "./pages/CompleteTodos";
+import UsersPage from "./pages/UserPage";
 
 const Routing = () => {
   return (

@@ -11,7 +11,7 @@ const Login = () => {
   let password = React.useRef();
 
   const loginApp = async () => {
-    if (email.current.value == "" || password.current.value == "") {
+    if (email.current.value === "" || password.current.value === "") {
       toast.info("Please fill the information");
       return;
     }
@@ -20,14 +20,15 @@ const Login = () => {
         email: email.current.value,
         password: password.current.value,
       });
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.data.accessToken);
       dispatchEvent(new Event("storage"));
       navigate("/");
     } catch (error) {
-      if (error.response.status == 401) toast.warn(error.response.data.message);
+      // if (error.response.status === 401) 
+      toast.warn(error.response.data.message);
     }
 
-    // navigate("/");
+    navigate("/");
   };
 
   return (
@@ -49,7 +50,7 @@ const Login = () => {
             </label>
             <input
               ref={email}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-100 leading-tight focus:outline-none focus:shadow-outline"
               name="email"
               v-model="form.email"
               type="email"
@@ -62,7 +63,7 @@ const Login = () => {
             </label>
             <input
               ref={password}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-100 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               v-model="form.password"
               type="password"
               placeholder="Password"

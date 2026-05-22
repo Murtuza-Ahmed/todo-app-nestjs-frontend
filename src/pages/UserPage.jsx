@@ -1,26 +1,29 @@
-// import React from "react";
-// import { ApiConstants } from "../api/ApiConstants";
-// import custom_axios from "../axios/AxiosSetup";
+import React from "react";
+import { ApiConstants } from "../api/ApiConstants";
+import custom_axios from "../axios/AxiosSetup";
 import NavBar from "../components/NavBar";
-// import { getLoginInfo } from "../utils/LoginInfo";
-// import { toast } from "react-toastify";
+import { getLoginInfo } from "../utils/LoginInfo";
+import { toast } from "react-toastify";
 
 const UsersPage = () => {
-  // const [users, setUsers] = React.useState([]);
+  const [users, setUsers] = React.useState([]);
 
-  // const getAllUsers = async () => {
-  //   const role = getLoginInfo()?.role;
-  //   if (role != null && role == "ADMIN") {
-  //     const response = await custom_axios.get(ApiConstants.USER.FIND_ALL, { headers: { Authorization: "Bearer " + localStorage.getItem("token") } });
-  //     setUsers(response.data);
-  //   } else {
-  //     toast.info("Forbidden Resource");
-  //   }
-  // };
+  const getAllUsers = async () => {
+    const role = getLoginInfo()?.role;
+    if (role != null && role === "ADMIN") {
+      const response = await custom_axios.get(ApiConstants.USER.FIND_ALL, { headers: { Authorization: "Bearer " + localStorage.getItem("token") } });
+      setUsers(response.data.data);
+    } else {
+      toast.info("Forbidden Resource");
+    }
+  };
 
-  // React.useEffect(() => {
-  //   if (users.length == 0) getAllUsers();
-  // }, []);
+  React.useEffect(() => {
+    const fetchUser = async () => {
+      await getAllUsers();
+    };
+    fetchUser();
+  }, []);
   return (
     <div>
       <NavBar></NavBar>
@@ -49,7 +52,7 @@ const UsersPage = () => {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                    {/* {users.map((user) => {
+                    {users.map((user) => {
                       return (
                         <tr key={user.id} className="hover:bg-gray-100 dark:hover:bg-gray-700">
                           <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">{user.firstName}</td>
@@ -61,7 +64,7 @@ const UsersPage = () => {
                               onClick={async () => {
                                 const response = await custom_axios.delete(ApiConstants.USER.DELETE(user.id), { headers: { Authorization: "Bearer " + localStorage.getItem("token") } });
                                 getAllUsers();
-                                toast.success("User Deleted Sucessfully!!");
+                                toast.success(response.data.message || "User Deleted Sucessfully!!");
                               }}
                               className="bg-red-400 hover:bg-red-500 rounded-lg px-4 py-2 text-white shadow-sm text-xl "
                             >
@@ -70,7 +73,7 @@ const UsersPage = () => {
                           </td>
                         </tr>
                       );
-                    })} */}
+                    })}
                   </tbody>
                 </table>
               </div>

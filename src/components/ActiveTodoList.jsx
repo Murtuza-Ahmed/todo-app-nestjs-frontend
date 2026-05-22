@@ -1,5 +1,3 @@
-// import React from "react";
-
 const ActiveTodoList = (props) => {
   return (
     <li className="border-gray-400  flex flex-row">

@@ -1,5 +1,8 @@
 // import React, { useEffect } from "react";
-import { Routes, Route, HashRouter } from "react-router-dom";
+import {
+  Routes, Route,
+  BrowserRouter
+} from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/Login";
@@ -12,7 +15,7 @@ import UsersPage from "./pages/UserPage";
 const Routing = () => {
   return (
     <div>
-      <HashRouter>
+      <BrowserRouter>
         <ToastContainer autoClose={3000} position={"top-center"} hideProgressBar={true} />
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -53,7 +56,7 @@ const Routing = () => {
             }
           />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </div>
   );
 };

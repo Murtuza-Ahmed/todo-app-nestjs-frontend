@@ -21,14 +21,10 @@ const Login = () => {
         password: password.current.value,
       });
       localStorage.setItem("token", response.data.data.accessToken);
-      dispatchEvent(new Event("storage"));
       navigate("/");
     } catch (error) {
-      // if (error.response.status === 401) 
-      toast.warn(error.response.data.message);
+      toast.warn(error.response.data.message || "Login failed");
     }
-
-    navigate("/");
   };
 
   return (

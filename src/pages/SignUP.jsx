@@ -15,18 +15,23 @@ const SignUp = () => {
 
   const register = async () => {
     if (password.current.value != confirmPassword.current.value) {
-      toast.info("Password does not match!!!");
+      toast.info('Password does not match!!!');
       return;
     }
 
-    const response = await custom_axios.post(ApiConstants.USER.SIGN_UP, {
-      firstName: firstName.current.value,
-      lastName: lastName.current.value,
-      email: email.current.value,
-      password: password.current.value,
-    });
-    navigate("/login");
-    toast.success(`${response.data.message}!!!`);
+    try {
+      const response = await custom_axios.post(ApiConstants.USER.SIGN_UP, {
+        firstName: firstName.current.value,
+        lastName: lastName.current.value,
+        email: email.current.value,
+        password: password.current.value,
+      });
+      navigate('/login');
+      toast.success(`${response.data.message}!!!`);
+    } catch (error) {
+      const message = error.response?.data?.message;
+      toast.warn(Array.isArray(message) ? message.join(', ') : message || 'Registration failed');
+    }
   };
 
   return (
@@ -94,7 +99,7 @@ const SignUp = () => {
                       type="password"
                       placeholder="******************"
                     />
-                    {/* <p className="text-xs italic text-red-500">Please choose a password.</p> */}
+                    <p className="text-xs italic text-gray-500">Min 8 chars with upper & lower case, a number and a symbol.</p>
                   </div>
                   <div className="md:ml-2">
                     <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="c_password">

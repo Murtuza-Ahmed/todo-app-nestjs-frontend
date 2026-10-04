@@ -14,7 +14,7 @@ function ActiveTodos() {
   const getAllNotCompletedTodos = async () => {
     const userId = getLoginInfo()?.sub;
     if (userId != null) {
-      const response = await custom_axios.get(ApiConstants.TODO.FIND_NOT_COMPLETED(userId), { headers: { Authorization: "Bearer " + localStorage.getItem("token") } });
+      const response = await custom_axios.get(ApiConstants.TODO.FIND_NOT_COMPLETED, { headers: { Authorization: "Bearer " + localStorage.getItem("token") } });
       setTodos(response.data?.data);
     } else {
       toast.info("Sorry you are not authenticated");
@@ -29,7 +29,7 @@ function ActiveTodos() {
     const userId = getLoginInfo()?.sub;
     if (userId != null) {
       const response = await custom_axios.post(
-        ApiConstants.TODO.ADD(userId),
+        ApiConstants.TODO.ADD,
         {
           title: title.current.value,
         },
@@ -47,7 +47,7 @@ function ActiveTodos() {
     const fetchTodos = async () => {
       const userId = getLoginInfo()?.sub;
       if (userId != null) {
-        const response = await custom_axios.get(ApiConstants.TODO.FIND_NOT_COMPLETED(userId), { headers: { Authorization: "Bearer " + localStorage.getItem("token") } });
+        const response = await custom_axios.get(ApiConstants.TODO.FIND_NOT_COMPLETED, { headers: { Authorization: "Bearer " + localStorage.getItem("token") } });
         setTodos(response.data?.data);
       } else {
         toast.info("Sorry you are not authenticated");
@@ -70,14 +70,14 @@ function ActiveTodos() {
             return (
               <ActiveTodoList
                 key={todo.id}
-                dateTime={todo.date}
+                dateTime={todo.createdAt}
                 deleteTodo={async () => {
                   const response = await custom_axios.delete(ApiConstants.TODO.DELETE(todo.id), { headers: { Authorization: "Bearer " + localStorage.getItem("token") } });
                   getAllNotCompletedTodos();
                   toast.success(response.data.message || "Todo Deleted Sucessfully!!");
                 }}
                 markCompelte={async () => {
-                  const response = await custom_axios.patch(ApiConstants.TODO.MARK_COMPLETE(todo.id), {}, { headers: { Authorization: "Bearer " + localStorage.getItem("token") } });
+                  const response = await custom_axios.patch(ApiConstants.TODO.MARK_COMPLETE(todo.id), { completed: true }, { headers: { Authorization: "Bearer " + localStorage.getItem("token") } });
                   getAllNotCompletedTodos();
                   toast.success(response.data.message || "Todo Marked Completed");
                 }}

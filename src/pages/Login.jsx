@@ -23,7 +23,7 @@ const Login = () => {
       localStorage.setItem("token", response.data.data.accessToken);
       navigate("/");
     } catch (error) {
-      toast.warn(error.response.data.message || "Login failed");
+      toast.warn(error.response?.data?.message || 'Login failed');
     }
   };
 

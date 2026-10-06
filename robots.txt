@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://todo-app-nestjs-frontend.vercel.app/sitemap.xml
